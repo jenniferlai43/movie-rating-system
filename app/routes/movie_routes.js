@@ -1,7 +1,6 @@
 // routes/note_routes.js
 var mongoose = require('mongoose');
 
-
 var Rating = require('../../models/rating');
 
 module.exports = function(app) {

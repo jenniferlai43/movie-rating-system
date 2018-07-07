@@ -1,27 +1,40 @@
 // routes/note_routes.js
+var mongoose = require('mongoose');
 
-var ObjectID = require('mongodb').ObjectID;
 
-module.exports = function(app, db) {
-	app.get('/movies/:id', (req, res) => {
-		const id = req.params.id;
-		const details = { '_id': new ObjectID(id) };
-		db.collection('movies').findOne(details, (err, item) => {
+var Rating = require('../../models/rating');
+
+module.exports = function(app) {
+	app.get('/movies', function(req, res) {
+		Rating.find(function(err, movies) {
 			if (err) {
-				res.send({'error': 'An error has occurred'});
+				res.send({'error': 'An error has occured'});
 			}
 			else {
-				//res.send(item);
-				res.send("<html><body><h1>" + item.text + "</h1><p>" + item.rate + "</p></body></html>");
+				res.json(movies);
 			}
 		});
 	});
 
-	app.delete('/movies/:id', (req, res) => {
+	app.get('/movies/:id', function(req, res) {
 		const id = req.params.id;
-		const details = { '_id': new ObjectID(id) };
-		db.collection('movies').remove(details, (err, item) => {
+		Rating.findById(id, function(err, movie) {
 			if (err) {
+				res.send({'error': 'An error has occurred'});
+			}
+			else {
+				res.send(movie);
+			}
+		});
+	});
+
+	app.delete('/movies/:id', function(req, res) {
+		const id = req.params.id;
+		Rating.remove({
+			_id : id
+		}, function(err) {
+			if (err)
+			{
 				res.send({'error': 'An error has occurred'});
 			}
 			else {
@@ -30,28 +43,52 @@ module.exports = function(app, db) {
 		});
 	});
 
-	app.post('/movies', (req, res) => {
-		const rating = { movie: req.body.movie, genre: req.body.genre, rate: req.body.rating, description: req.body.description };
-		db.collection('movies').insert(rating, (err, result) => {
-			if (err) {
-				res.send({ 'error': 'An error has occurred' });
-			}
-			else {
-				res.send(result.ops[0]);
-			}
+	app.post('/movies', function(req, res) {
+		Rating.create({
+			movie: req.body.movie,
+			genre: req.body.genre,
+			rate: req.body.rate,
+			description: req.body.description,
+			created_at: new Date(),
+			updated_at: new Date()
+		}, function(err, rating) {
+				if (err)
+				{
+					res.send({'error': 'An error has occurred'});
+				}
+				else
+				{
+					Rating.find(function(err, movies) {
+						if (err)
+						{
+							res.send({'error': 'An error has occurred'});
+						}
+						else
+						{
+							res.json(movies);
+						}
+					});
+				}
 		});
 	});
 
-	app.put('/movies/:id', (req, res) => {
+	app.put('/movies/:id', function(req, res) {
 		const id = req.params.id;
-		const details = { '_id': new ObjectID(id) };
-		const rating = { movie: req.body.movie, genre: req.body.genre, rate: req.body.rating, description: req.body.description };
-		db.collection('movies').update(details, rating, (err, result) => {
-			if (err) {
-				res.send({'error': 'An error has occurred'});
+		var data = {
+			movie: req.body.movie,
+			genre: req.body.genre,
+			rate: req.body.rate,
+			description: req.body.description,
+			updated_at: new Date()
+		};
+		Rating.findByIdAndUpdate(id, data, function(err, rating) {
+			if (err)
+			{
+				throw err;
 			}
-			else {
-				res.send(rating);
+			else
+			{
+				res.send('Successfully updated ' + rating.movie);
 			}
 		});
 	});

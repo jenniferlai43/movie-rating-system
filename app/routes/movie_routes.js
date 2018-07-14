@@ -4,6 +4,20 @@ var mongoose = require('mongoose');
 var Rating = require('../../models/rating');
 
 module.exports = function(app) {
+
+	//index page
+	app.get('/', function(req, res) {
+		Rating.find(function(err, movies) {
+			if (err) {
+				res.send({'error': 'An error has occurred'});
+			}
+			else {
+				//res.render will look in views folder
+				res.render('pages/index', {list: movies});
+			}
+		});
+	});
+
 	app.get('/movies', function(req, res) {
 		Rating.find(function(err, movies) {
 			if (err) {

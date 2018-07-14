@@ -1,0 +1,14 @@
+<!-- views/pages/index.ejs -->
+<html>
+	<head>
+		<% include ../partials/head %>
+	</head>
+	<body>
+		<% include ../partials/sidebar %>
+		<ul>
+			<% for(var i=0; i<list.length; i++){ %>
+				<li><%= list[i].movie %></li>
+			<% } %>
+		</ul>
+	</body>
+</html>

@@ -18,6 +18,12 @@ const app = express();
 
 const port = 8000;
 
+//to render views
+app.set('view engine', 'ejs');
+
+//for static files
+app.use(express.static('./assets'));
+
 app.use(bodyParser.urlencoded({ extended: true }));
 
 mongoose.connect(db.url, function(err){

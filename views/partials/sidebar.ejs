@@ -1,13 +1,16 @@
 <!-- views/partials/sidebar.ejs -->
 <div class = "container-sidebar">
-	<h1>Movie Rating Organizer</h1>
 	<div class = "nav">
 		<li><a href = "/">Home</a></li>
 		<li>Add Movie</li>
 		<form>
+			<p>Movie Name</p>
 			<input type="text" name="movie" placeholder="Movie Name..." required />
+			<p>Genre</p>
 			<input type="text" name="genre" placeholder="Genre..." required />
+			<p>Rating (1 to 10)</p>
 			<input type="text" name="rate" placeholder="Rating..." required />
+			<p>Description</p>
 			<input type="text" name="description" placeholder="Description..." required />
 			<button type="submit">Add Movie</button>
 		</form>

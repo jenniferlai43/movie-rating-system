@@ -1,0 +1,104 @@
+body {
+    color: black;
+    font-family:  "Trebuchet MS", Helvetica, sans-serif;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    background-color: white;
+}
+
+.header {
+    text-align: center;
+}
+
+.container-sidebar {
+    float: left;
+    height: 100%;
+    padding-right: 30px;
+    font-style: bold;
+}
+
+.container-sidebar input {
+    width: 100%;
+    padding: 10px 10px;
+    margin: 5px 0px;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
+}
+
+.container-sidebar input[type=text]:focus {
+    border: 3px solid #555;
+}
+
+.container-sidebar button {
+    background-color: whitesmoke;
+    border-radius: 5px;
+    outline: none;
+    color: black;
+    margin: 10px 0px;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+}
+
+.container-sidebar button:hover {
+    border: none;
+    background-color: #5B5B5B;
+    color: white;
+    text-align: center;
+}
+
+.nav {
+    text-decoration: none;
+    list-style-type: none;
+    display: block;
+    padding: 8px 16px;
+    text-decoration: none;
+    width: 200px;
+    text-align: center;
+}
+
+.nav li {
+    border-radius: 60px;
+    margin: 5px 0px;
+    padding: 15px 0px;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+}
+
+.nav a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Change the link color on hover */
+.nav li:hover {
+    background-color: #555;
+    color: white;
+}
+
+.movie-list {
+    float: left;
+}
+
+.movie-list ul #movie{
+    margin: 10px 0px;
+    padding: 10px 20px;
+    font-size: 12px;
+    background-color: #E9E9E9;
+}
+
+.movie-list .details li{
+    margin-left: 20px;
+}
+
+.movie-list #title {
+    list-style-type: none;
+    font-weight: bold;
+    font-size: 20px;
+}

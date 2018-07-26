@@ -4,18 +4,24 @@
 		<% include ../partials/head %>
 	</head>
 	<body>
+		<% include ../partials/header %>
 		<% include ../partials/sidebar %>
-		<ul>
-			<% for(var i=0; i<list.length; i++){ %>
-				<li><%= list[i].movie %></li>
-				<ul>
-					<li>Rate: <%= list[i].rate %></li>
-					<li>Genre: <%= list[i].genre %></li>
-					<li>Description: <%= list[i].description %></li>
-					<li>Created at: <%= list[i].created_at %></li>
-					<li>Updated at: <%= list[i].updated_at %></li>
-				</ul>
-			<% } %>
-		</ul>
+		<div class = "movie-list">
+			<ul>
+				<% for(var i=0; i<list.length; i++){ %>
+					<ul id = "movie">
+						<li id = "title"><%= list[i].movie %></li>
+						<div class = "details">
+							<li>Rate: <%= list[i].rate %></li>
+							<li>Genre: <%= list[i].genre %></li>
+							<li>Description: <%= list[i].description %></li>
+							<li>Created at: <%= list[i].created_at %></li>
+							<li>Updated at: <%= list[i].updated_at %></li>
+						</div>
+					</ul>
+					<br />
+				<% } %>
+			</ul>
+		</div>
 	</body>
 </html>

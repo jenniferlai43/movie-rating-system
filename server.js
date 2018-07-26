@@ -22,7 +22,7 @@ const port = 8000;
 app.set('view engine', 'ejs');
 
 //for static files
-app.use(express.static('./assets'));
+app.use(express.static('./public'));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 

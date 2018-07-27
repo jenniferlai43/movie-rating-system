@@ -78,7 +78,7 @@ module.exports = function(app) {
 						}
 						else
 						{
-							res.json(movies);
+							res.render('pages/index', {list: movies});
 						}
 					});
 				}

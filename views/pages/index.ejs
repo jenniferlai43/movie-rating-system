@@ -1,4 +1,5 @@
 <!-- views/pages/index.ejs -->
+<!DOCTYPE html>
 <html>
 	<head>
 		<% include ../partials/head %>
@@ -9,19 +10,23 @@
 		<div class = "movie-list">
 			<ul>
 				<% for(var i=0; i<list.length; i++){ %>
-					<ul id = "movie">
-						<li id = "title"><%= list[i].movie %></li>
-						<div class = "details">
-							<li>Rate: <%= list[i].rate %></li>
-							<li>Genre: <%= list[i].genre %></li>
-							<li>Description: <%= list[i].description %></li>
-							<li>Created at: <%= list[i].created_at %></li>
-							<li>Updated at: <%= list[i].updated_at %></li>
-						</div>
-					</ul>
-					<br />
+					<div class = movie_item>
+						<ul id = "movie">
+							<li id = "title"><%= list[i].movie %></li>
+							<div class = "details">
+								<li>Rate: <%= list[i].rate %></li>
+								<li>Genre: <%= list[i].genre %></li>
+								<li>Description: <%= list[i].description %></li>
+								<li>Created at: <%= list[i].created_at %></li>
+								<li>Updated at: <%= list[i].updated_at %></li>
+							</div>
+						</ul>
+						<img src = "data:image/png;base64,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" / >
+						<br />
+					</div>
 				<% } %>
 			</ul>
 		</div>
 	</body>
+	<script type="text/javascript" src="./movie-list.js"></script>
 </html>

@@ -9,6 +9,13 @@ ul {
     background-color: white;
 }
 
+img
+{
+    max-height: 20px;
+    display: inline-block;
+    
+}
+
 .header {
     text-align: center;
 }
@@ -34,8 +41,8 @@ ul {
 }
 
 .container-sidebar button {
-    background-color: whitesmoke;
-    border-radius: 5px;
+    background-color: transparent;
+    border: 2px #5B5B5B solid;
     outline: none;
     color: black;
     margin: 10px 0px;
@@ -47,10 +54,14 @@ ul {
 }
 
 .container-sidebar button:hover {
-    border: none;
     background-color: #5B5B5B;
     color: white;
     text-align: center;
+}
+
+.collapse_form
+{
+    display: none;
 }
 
 .nav {
@@ -59,7 +70,7 @@ ul {
     display: block;
     padding: 8px 16px;
     text-decoration: none;
-    width: 200px;
+    width: 20vh;
     text-align: center;
 }
 
@@ -87,10 +98,18 @@ ul {
 }
 
 .movie-list ul #movie{
+    width: 80vh;
     margin: 10px 0px;
     padding: 10px 20px;
     font-size: 12px;
     background-color: #E9E9E9;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    display: inline-block;
+}
+
+.movie-list ul #movie:hover{
+    background-color: white;
 }
 
 .movie-list .details li{

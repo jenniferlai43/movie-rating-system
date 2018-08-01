@@ -28,12 +28,27 @@ img
 }
 
 .container-sidebar input {
-    width: 100%;
+    width: 25vh;
     padding: 10px 10px;
     margin: 5px 0px;
     -webkit-transition: 0.5s;
     transition: 0.5s;
     outline: none;
+    overflow: visible;
+}
+
+.container-sidebar textarea {
+    width: 25vh;
+    padding: 10px 10px;
+    margin: 5px 0px;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
+    overflow: visible;
+}
+
+.container-sidebar textarea:focus {
+    border: 3px solid #555;
 }
 
 .container-sidebar input[type=text]:focus {
@@ -61,7 +76,8 @@ img
 
 .collapse_form
 {
-    display: none;
+    /*display: none;*/
+    overflow: visible;
 }
 
 .nav {
@@ -70,7 +86,7 @@ img
     display: block;
     padding: 8px 16px;
     text-decoration: none;
-    width: 20vh;
+    width: 30vh;
     text-align: center;
 }
 

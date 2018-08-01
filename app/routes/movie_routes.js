@@ -40,7 +40,7 @@ module.exports = function(app) {
 			}
 		});
 	});
-
+	/*
 	app.delete('/movies/:id', function(req, res) {
 		const id = req.params.id;
 		Rating.remove({
@@ -55,6 +55,19 @@ module.exports = function(app) {
 			}
 		});
 	});
+	*/
+
+	app.delete('/movies/:title', function(req, res) {
+		Rating.find({movie: req.params.title.replace(/\-/g, " ")}).remove(function(err, data) {
+			if (err) {
+				res.send({'error': 'An error has occurred'});
+			}
+			else {
+				console.log("deleted.");
+				res.json(data);
+			}
+		});
+	});
 
 	app.post('/movies', function(req, res) {
 		Rating.create({
@@ -65,6 +78,7 @@ module.exports = function(app) {
 			created_at: new Date(),
 			updated_at: new Date()
 		}, function(err, rating) {
+				console.log('created rating');
 				if (err)
 				{
 					res.send({'error': 'An error has occurred'});
@@ -78,7 +92,7 @@ module.exports = function(app) {
 						}
 						else
 						{
-							res.render('pages/index', {list: movies});
+							res.json(rating);
 						}
 					});
 				}

@@ -1,0 +1,28 @@
+<!-- views/pages/index.ejs -->
+<!DOCTYPE html>
+<html>
+	<head>
+		<% include ../partials/head %>
+	</head>
+	<body>
+		<% include ../partials/header %>
+		<% include ../partials/edit-sidebar %>
+		<div class = "movie-list">
+			<ul>
+					<div class = movie_item>
+						<ul id = "movie">
+							<li id = "title"><%=rating[0].movie %></li>
+							<div class = "details">
+								<li>Rate: <%=rating[0].rate %></li>
+								<li>Genre: <%=rating[0].genre %></li>
+								<li>Description: <%=rating[0].description %></li>
+								<li>Created at: <%=rating[0].created_at %></li>
+								<li>Updated at: <%=rating[0].updated_at %></li>
+							</div>
+						</ul>
+						<br />
+					</div>
+			</ul>
+		</div>
+	</body>
+</html>

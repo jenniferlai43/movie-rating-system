@@ -40,22 +40,6 @@ module.exports = function(app) {
 			}
 		});
 	});
-	/*
-	app.delete('/movies/:id', function(req, res) {
-		const id = req.params.id;
-		Rating.remove({
-			_id : id
-		}, function(err) {
-			if (err)
-			{
-				res.send({'error': 'An error has occurred'});
-			}
-			else {
-				res.send('Movie ' + id + ' deleted.');
-			}
-		});
-	});
-	*/
 
 	app.delete('/movies/:title', function(req, res) {
 		Rating.find({movie: req.params.title.replace(/\-/g, " ")}).remove(function(err, data) {
@@ -99,6 +83,42 @@ module.exports = function(app) {
 		});
 	});
 
+	app.get('/edit/:title', function(req, res) {
+		Rating.find({movie: req.params.title.replace(/\-/g, " ")}, function(err, movie) {
+			if (err) {
+				console.log("error");
+				res.send({'error': 'An error has occurred'});
+			}
+			else {
+				//res.render will look in views folder
+				console.log(movie);
+				res.render('pages/edit', {rating: movie});
+			}
+		});
+	});
+
+	app.put('/edit', function(req, res) {
+		const id = req.params.id;
+		var data = {
+			movie: req.body.movie,
+			genre: req.body.genre,
+			rate: req.body.rate,
+			description: req.body.description,
+			updated_at: new Date()
+		};
+		Rating.findByIdAndUpdate(id, data, function(err, rating) {
+			if (err)
+			{
+				throw err;
+			}
+			else
+			{
+				res.send('Successfully updated ' + rating.movie);
+			}
+		});
+	});
+
+	/*
 	app.put('/movies/:id', function(req, res) {
 		const id = req.params.id;
 		var data = {
@@ -119,4 +139,5 @@ module.exports = function(app) {
 			}
 		});
 	});
+	*/
 };

@@ -27,14 +27,23 @@ $(document).ready(function(){
 		//return false;
 	}
 
+	function ajaxPut() {
+		
+	}
+
 	$("#rating_input").on('submit', function(e){
-		e.preventDefault();
+		e.preventDefault(); //prevents default browser handling of forms
 		ajaxPost();
 	});
 
-	$("img").on('click', function() {
-		var divToDel = $(this).prev();
-		var title = divToDel.find('#title').text().replace(/ /g, "-");
+	$("#rating_input_edit").on('submit', function(e){
+		e.preventDefault();
+		ajaxPut();
+	});
+
+	$('[id="delete_icon"]').on('click', function() {
+		var divToDel = $(this).parent().prev();
+		var title = divToDel.find('#title').text().replace(/ /g, "-"); //replaces spaces with dashes
 		console.log(title);
 		$.ajax({
 			type: 'DELETE',

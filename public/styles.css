@@ -12,8 +12,8 @@ ul {
 img
 {
     max-height: 20px;
+    padding-left: 10px;
     display: inline-block;
-    
 }
 
 .header {
@@ -136,4 +136,9 @@ img
     list-style-type: none;
     font-weight: bold;
     font-size: 20px;
+}
+
+.movie_item {
+    display: flex;
+    align-items: center;
 }

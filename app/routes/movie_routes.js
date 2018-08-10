@@ -41,7 +41,18 @@ module.exports = function(app) {
 		});
 	});
 
-	app.delete('/movies/:title', function(req, res) {
+	app.delete('/movies/:id', function(req, res) {
+		var id = req.params.id;
+		Rating.findById(id).remove(function(err, data) {
+			if (err) {
+				res.send({'error': 'An error has occurred'});
+			}
+			else {
+				console.log("deleted. "+ id);
+				res.json(data);
+			}
+		});
+		/*
 		Rating.find({movie: req.params.title.replace(/\-/g, " ")}).remove(function(err, data) {
 			if (err) {
 				res.send({'error': 'An error has occurred'});
@@ -51,6 +62,7 @@ module.exports = function(app) {
 				res.json(data);
 			}
 		});
+		*/
 	});
 
 	app.post('/movies', function(req, res) {
@@ -83,8 +95,10 @@ module.exports = function(app) {
 		});
 	});
 
-	app.get('/edit/:title', function(req, res) {
-		Rating.find({movie: req.params.title.replace(/\-/g, " ")}, function(err, data) {
+
+	app.get('/edit/:id', function(req, res) {
+		var id = req.params.id;
+		Rating.findById(id, function(err, data) {
 			if (err) {
 				console.log("error");
 				res.send({'error': 'An error has occurred'});
@@ -97,7 +111,7 @@ module.exports = function(app) {
 		});
 	});
 
-	app.put('/edit', function(req, res) {
+	app.put('/edit/:id', function(req, res) {
 		const id = req.params.id;
 		var data = {
 			movie: req.body.movie,

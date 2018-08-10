@@ -27,8 +27,21 @@ $(document).ready(function(){
 		//return false;
 	}
 
-	function ajaxPut() {
-		
+	function ajaxPut(id) {
+		var formData = {
+			movie: $('#movie').val(),
+			genre: $('#genre').val(),
+			rate: $('#rate').val(),
+			description: $('#description').val()
+		};
+		$.ajax({
+			type: 'PUT',
+			url: '/edit/' + id,
+			data: formData,
+			success: function(data) {
+				location.reload();
+			}
+		});
 	}
 
 	$("#rating_input").on('submit', function(e){
@@ -38,7 +51,8 @@ $(document).ready(function(){
 
 	$("#rating_input_edit").on('submit', function(e){
 		e.preventDefault();
-		ajaxPut();
+		var id = $(this).attr("data-id");
+		ajaxPut(id);
 	});
 
 	$('[id="delete_icon"]').on('click', function() { //id = "..." when there are multiple elements with that id
@@ -56,19 +70,4 @@ $(document).ready(function(){
 		});
 		
 	});
-	
-	/*
-	$('[id="edit_icon"]').on('click', function() {
-		var divToEdit = $(this).parent().prev();
-		var title = divToEdit.find('#title').text().replace(/ /g, "-");
-		console.log(title);
-		var id = $(this).attr("data-id");
-		$.ajax({
-			type: 'GET',
-			url: '/edit/' + title,
-			success: function(data) {
-			}
-		});
-	});
-	*/
 });

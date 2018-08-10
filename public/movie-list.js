@@ -41,10 +41,12 @@ $(document).ready(function(){
 		ajaxPut();
 	});
 
-	$('[id="delete_icon"]').on('click', function() {
+	$('[id="delete_icon"]').on('click', function() { //id = "..." when there are multiple elements with that id
+
 		var divToDel = $(this).parent().prev();
 		var title = divToDel.find('#title').text().replace(/ /g, "-"); //replaces spaces with dashes
 		console.log(title);
+		/*var id = $(this).attr("data-id");*/
 		$.ajax({
 			type: 'DELETE',
 			url: '/movies/' + title,
@@ -53,5 +55,18 @@ $(document).ready(function(){
 			}
 		});
 		
+	});
+	
+	$('[id="edit_icon"]').on('click', function() {
+		var divToEdit = $(this).parent().prev();
+		var title = divToEdit.find('#title').text().replace(/ /g, "-");
+		console.log(title);
+		return false;
+		$.ajax({
+			type: 'GET',
+			url: '/edit/' + title,
+			success: function(data) {
+			}
+		});
 	});
 });

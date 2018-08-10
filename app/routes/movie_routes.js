@@ -84,15 +84,15 @@ module.exports = function(app) {
 	});
 
 	app.get('/edit/:title', function(req, res) {
-		Rating.find({movie: req.params.title.replace(/\-/g, " ")}, function(err, movie) {
+		Rating.find({movie: req.params.title.replace(/\-/g, " ")}, function(err, data) {
 			if (err) {
 				console.log("error");
 				res.send({'error': 'An error has occurred'});
 			}
 			else {
 				//res.render will look in views folder
-				console.log(movie);
-				res.render('pages/edit', {rating: movie});
+				console.log(data);
+				res.render('pages/edit', {rating: data});
 			}
 		});
 	});

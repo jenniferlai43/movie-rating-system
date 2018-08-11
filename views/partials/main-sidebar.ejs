@@ -2,7 +2,14 @@
 <div class = "container-sidebar">
 	<div class = "nav">
 		<a href = "/"><li>Home</li></a>
-		<li id = "collapsible_trigger">Add Movie</li>
+		<!--<li id = "collapsible_trigger">Add Movie</li>-->
+		<p>Sort By:</p>
+		<select>
+			<option>Movie Name</option>
+			<option>Rating (descending)</option>
+			<option>Rating (ascending)</option>
+		</select>
+		<button id = "sort_button" type="button" onclick="sort()">Sort</button>
 		<div class = "collapse_form">
 			<!--<form action = '/movies' method = 'POST'>-->
 			<form id = "rating_input">

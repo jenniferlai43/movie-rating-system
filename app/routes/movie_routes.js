@@ -7,7 +7,7 @@ module.exports = function(app) {
 
 	//index page
 	app.get('/', function(req, res) {
-		Rating.find(function(err, movies) {
+		Rating.find({}).sort({rate: 'descending'}).exec(function(err, movies) {
 			if (err) {
 				res.send({'error': 'An error has occurred'});
 			}

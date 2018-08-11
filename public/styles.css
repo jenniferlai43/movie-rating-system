@@ -16,6 +16,12 @@ img
     display: flex;
 }
 
+p
+{
+    font-size: 14px;
+    margin: 8px 14px;
+}
+
 .header {
     text-align: center;
 }
@@ -57,7 +63,7 @@ img
 
 .container-sidebar button {
     background-color: transparent;
-    border: 2px #5B5B5B solid;
+    border: 1px #5B5B5B solid;
     outline: none;
     color: black;
     margin: 10px 0px;
@@ -66,6 +72,12 @@ img
     text-decoration: none;
     -webkit-transition: 0.5s;
     transition: 0.5s;
+    border-radius: 5px;
+}
+
+#sort_button {
+    margin: 0px 5px;
+    padding: 5px 10px;
 }
 
 .container-sidebar button:hover {
@@ -122,6 +134,7 @@ img
     -webkit-transition: 0.5s;
     transition: 0.5s;
     display: inline-block;
+    border-radius: 5px;
 }
 
 .movie-list ul #movie:hover{

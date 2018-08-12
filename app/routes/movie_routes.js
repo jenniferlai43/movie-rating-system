@@ -7,7 +7,39 @@ module.exports = function(app) {
 
 	//index page
 	app.get('/', function(req, res) {
-		Rating.find({}).sort({rate: 'descending'}).exec(function(err, movies) {
+		Rating.find({}).sort({movie: 'ascending'}).exec(function(err, movies) {
+			if (err) {
+				res.send({'error': 'An error has occurred'});
+			}
+			else {
+				//res.render will look in views folder
+				res.render('pages/index', {list: movies});
+			}
+		});
+	});
+
+	app.get('/:sortMethod', function(req, res) {
+		console.log("in server");
+		const sortMethod = req.params.sortMethod;
+		var sortParameter;
+		if (sortMethod === "md") //sort by movie descending
+		{
+			sortParameter = {movie: 'descending'};
+		}
+		else if (sortMethod === "ma") //sort by movie name ascending
+		{
+			sortParameter = {movie: 'ascending'};
+		}
+		else if (sortMethod === "rd") //sort by rate descending
+		{
+			sortParameter = {rate: 'descending'};
+		}
+		else if (sortMethod === "ra") //sort by rate ascending
+		{
+			sortParameter = {rate: 'ascending'};
+		}
+		console.log(sortParameter);
+		Rating.find({}).sort(sortParameter).exec(function(err, movies) {
 			if (err) {
 				res.send({'error': 'An error has occurred'});
 			}

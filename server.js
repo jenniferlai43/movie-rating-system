@@ -24,6 +24,7 @@ app.set('view engine', 'ejs');
 //for static files
 app.use(express.static('./public'));
 
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 mongoose.connect(db.url, function(err){

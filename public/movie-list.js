@@ -27,6 +27,36 @@ $(document).ready(function(){
 		//return false;
 	}
 
+	$("#sort_button").on('click', function(){
+		const sortMethod = document.getElementById("sort_option").value;
+		var sortParam;
+		if (sortMethod == "Movie Name (des.)")
+		{
+			sortParam = "md";
+		}
+		else if(sortMethod == "Movie Name (asc.)")
+		{
+			sortParam = "ma";
+		}
+		else if(sortMethod == "Rating (des.)")
+		{
+			sortParam = "rd";
+		}
+		else if(sortMethod == "Rating (asc.)")
+		{
+			sortParam = "ra";
+		}
+		console.log(sortMethod);
+		console.log("sort param:" + sortParam);
+		$.ajax({
+			type: 'GET',
+			url: '/' + sortParam,
+			success: function() {
+				window.location.replace('/' + sortParam);
+			}
+		});
+	});
+
 	function ajaxPut(id) {
 		var formData = {
 			movie: $('#movie').val(),

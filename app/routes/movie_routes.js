@@ -3,6 +3,32 @@ var mongoose = require('mongoose');
 
 var Rating = require('../../models/rating');
 
+
+function makeList (movies) {
+	var genreList = [];
+	var temp = 0;
+	for (var i=0; i<movies.length; i++)
+	{
+		for (var j=0; j<movies[i].genre.length; j++)
+		{
+			var bool = 0;
+			for (var k=0; k<genreList.length;k++)
+			{
+				if (movies[i].genre[j]===genreList[k]) //genre already exists
+				{
+					bool = 1;
+				}
+			}
+			if (bool === 0)
+			{		
+				genreList[temp] = movies[i].genre[j];
+				temp++;
+			}
+		}
+	}
+	return genreList;
+};
+
 module.exports = function(app) {
 
 	//index page
@@ -13,7 +39,19 @@ module.exports = function(app) {
 			}
 			else {
 				//res.render will look in views folder
-				res.render('pages/index', {list: movies});
+				
+				var genreList = makeList(movies);
+				/*
+				var genreList;
+				Rating.find({}, {genre: 1, _id: 0}).exec(function(err, genres) {
+					console.log(genres);
+					genreList = genres;
+				})
+				console.log("gl" + genreList);
+				*/
+				console.log(genreList);
+				//console.log(genreList.length);
+				res.render('pages/index', {list: movies, genreList: genreList});
 			}
 		});
 	});
@@ -44,11 +82,29 @@ module.exports = function(app) {
 				res.send({'error': 'An error has occurred'});
 			}
 			else {
+				var genreList = makeList(movies);
+				//res.render will look in views folder
+				res.render('pages/index', {list: movies, genreList: genreList});
+			}
+		});
+	});
+
+	/*
+	app.get('/view/:view', function(req, res) {
+		var viewOption = req.params.view;
+		console.log(viewOption);
+		Rating.find({genre: viewOption}).exec(function(err, movies) {
+			if (err) {
+				res.send({'error': 'An error has occurred'});
+			}
+			else {
+				console.log(movies);
 				//res.render will look in views folder
 				res.render('pages/index', {list: movies});
 			}
 		});
 	});
+	*/
 
 	app.get('/movies', function(req, res) {
 		Rating.find(function(err, movies) {
@@ -84,17 +140,6 @@ module.exports = function(app) {
 				res.json(data);
 			}
 		});
-		/*
-		Rating.find({movie: req.params.title.replace(/\-/g, " ")}).remove(function(err, data) {
-			if (err) {
-				res.send({'error': 'An error has occurred'});
-			}
-			else {
-				console.log("deleted.");
-				res.json(data);
-			}
-		});
-		*/
 	});
 
 	app.post('/movies', function(req, res) {
@@ -163,27 +208,4 @@ module.exports = function(app) {
 			}
 		});
 	});
-
-	/*
-	app.put('/movies/:id', function(req, res) {
-		const id = req.params.id;
-		var data = {
-			movie: req.body.movie,
-			genre: req.body.genre,
-			rate: req.body.rate,
-			description: req.body.description,
-			updated_at: new Date()
-		};
-		Rating.findByIdAndUpdate(id, data, function(err, rating) {
-			if (err)
-			{
-				throw err;
-			}
-			else
-			{
-				res.send('Successfully updated ' + rating.movie);
-			}
-		});
-	});
-	*/
 };

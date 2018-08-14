@@ -29,7 +29,7 @@ $(document).ready(function(){
 		//return false;
 	}
 
-	$("#sort_button").on('click', function(){
+	$("#filter_button").on('click', function(){
 		const sortMethod = document.getElementById("sort_option").value;
 		var sortParam;
 		if (sortMethod == "md")
@@ -48,13 +48,16 @@ $(document).ready(function(){
 		{
 			sortParam = "ra";
 		}
+		const genreType = document.getElementById("view_option").value.replace(/ /g, "-");
+		console.log("jsfile" +genreType);
 		//console.log(sortMethod);
 		//console.log("sort param:" + sortParam);
 		$.ajax({
 			type: 'GET',
-			url: '/' + sortParam,
+			url: '/?sortMethod=' + sortParam + '&genreType=' + genreType,
 			success: function() {
 				var option;
+				/*
 				if(sortParam === "md")
 				{
 					option = "md";
@@ -71,7 +74,8 @@ $(document).ready(function(){
 				{
 					option = "ra";
 				}
-				location.replace('/' + sortParam);
+				*/
+				location.replace('/?sortMethod=' + sortParam + '&genreType=' + genreType);
 				
 				/*
 				var optionToSelect = window.document.getElementById(option);

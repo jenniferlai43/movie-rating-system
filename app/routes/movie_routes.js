@@ -33,7 +33,45 @@ module.exports = function(app) {
 
 	//index page
 	app.get('/', function(req, res) {
-		Rating.find({}).sort({movie: 'ascending'}).exec(function(err, movies) {
+		var sortParameter = {};
+		var genreFind = {};
+		console.log(req.query);
+		if (req.query === null)
+		{
+			console.log('-----------empty');
+		}
+		else
+		{
+			console.log('-----------not empty');
+			var sortMethod = req.query.sortMethod;
+			var genreType = req.query.genreType;
+			
+			console.log("go:"+ genreType);
+			if (genreType!="All-Genres")
+			{
+				genreFind = {genre: genreType};
+			}
+			console.log("gf" + genreFind);
+			var sortParameter;
+			if (sortMethod === "md") //sort by movie descending
+			{
+				sortParameter = {movie: 'descending'};
+			}
+			else if (sortMethod === "ma") //sort by movie name ascending
+			{
+				sortParameter = {movie: 'ascending'};
+			}
+			else if (sortMethod === "rd") //sort by rate descending
+			{
+				sortParameter = {rate: 'descending'};
+			}
+			else if (sortMethod === "ra") //sort by rate ascending
+			{
+				sortParameter = {rate: 'ascending'};
+			}
+			console.log("sp" + sortParameter);	
+		}
+		Rating.find(genreFind).sort(sortParameter).exec(function(err, movies) {
 			if (err) {
 				res.send({'error': 'An error has occurred'});
 			}
@@ -49,13 +87,15 @@ module.exports = function(app) {
 				})
 				console.log("gl" + genreList);
 				*/
-				console.log(genreList);
+				//console.log(movies);
+				//console.log(genreList);
 				//console.log(genreList.length);
 				res.render('pages/index', {list: movies, genreList: genreList});
 			}
 		});
 	});
 
+	/*
 	app.get('/:sortMethod', function(req, res) {
 		console.log("in server");
 		const sortMethod = req.params.sortMethod;
@@ -88,6 +128,7 @@ module.exports = function(app) {
 			}
 		});
 	});
+	*/
 
 	/*
 	app.get('/view/:view', function(req, res) {

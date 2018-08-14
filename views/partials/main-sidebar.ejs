@@ -3,21 +3,26 @@
 	<div class = "nav">
 		<a href = "/"><li>Home</li></a>
 		<!--<li id = "collapsible_trigger">Add Movie</li>-->
-		<p>Sort By:</p>
-		<select id = "sort_option">
-			<option id = "ma" value = "ma">Movie Name (asc.)</option>
-			<option id = "md" value = "md">Movie Name (des.)</option>
-			<option id = "rd" value = "rd">Rating (des.)</option>
-			<option id = "ra" value = "ra">Rating (asc.)</option>
-		</select>
-		<button id = "sort_button" type="button">Sort</button>
-		<p>View by Genre:</p> 
-		<select id = "view_option">
-			<% for(var i=0; i<genreList.length; i++) { %>
-				<option><%= genreList[i] %></option>
-			<% } %>
-		</select>
-		<button id = "view_button" type="button">View</button>
+		<div id = "filter_container">
+			<div id = "filter_fields">
+				<p>Sort By:</p>
+				<select id = "sort_option">
+					<option id = "ma" value = "ma">Movie Name (asc.)</option>
+					<option id = "md" value = "md">Movie Name (des.)</option>
+					<option id = "rd" value = "rd">Rating (des.)</option>
+					<option id = "ra" value = "ra">Rating (asc.)</option>
+				</select>
+				<p>View by Genre:</p> 
+				<select id = "view_option">
+					<option>All Genres</option>
+					<% for(var i=0; i<genreList.length; i++) { %>
+						<option><%= genreList[i] %></option>
+					<% } %>
+				</select>
+			</div>
+			<button id = "filter_button" type = "button">Filter</button>
+		</div>
+		<br />
 		<div class = "collapse_form">
 			<!--<form action = '/movies' method = 'POST'>-->
 			<form id = "rating_input">

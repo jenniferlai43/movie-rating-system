@@ -75,16 +75,25 @@ p
     border-radius: 5px;
 }
 
-#sort_button {
-    float:right;
-    margin: 0px 5px;
-    padding: 5px 10px;
+#filter_container
+{
+    display: flex;
+    align-items: center;
 }
 
-#view_button {
-    margin: 0px 5px;
+#filter_fields
+{
+    float: left;
+}
+
+
+#filter_button {
+    width: 80px;
+    height: 40px;
+    margin: 28px 0px 5px 5px;
     padding: 5px 10px;
     float: right;
+    align-items: center;
 }
 
 .container-sidebar button:hover {

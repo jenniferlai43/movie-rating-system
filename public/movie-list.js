@@ -1,6 +1,31 @@
 
 $(document).ready(function(){
 
+	/*
+		This block of code changes default selected values of filtering options based on query string	
+	*/
+	var queryString = window.location.href.slice(window.location.href.indexOf('?')+1).split('&');
+	console.log(queryString);
+	if (queryString.length == 2)
+	{
+		var sortMethod = queryString[0].slice(queryString[0].indexOf('=')+1); 
+		console.log(sortMethod);
+		var genreType = queryString[1].slice(queryString[1].indexOf('=')+1);
+		console.log(genreType);
+		$('#sort_option > option').each(function() {
+			if (this.value == sortMethod)
+			{
+				this.selected = 'true';
+			}
+		});
+		$('#view_option > option').each(function() {
+			if (this.value == genreType.replace(/\-/g, " "))
+			{
+				this.selected = 'true';
+			}
+		});
+	}
+
 	function resetForm(){
 		$('#movie').val("");
 		$('#genre').val("");
@@ -10,14 +35,12 @@ $(document).ready(function(){
 
 	function ajaxPost() {
 		var genreArray = $('#genre').val().split(", ");
-		console.log(genreArray);
 		var formData = {
 			movie: $('#movie').val(),
 			genre: genreArray,
 			rate: $('#rate').val(),
 			description: $('#description').val()
 		};
-		console.log(formData);
 		$.ajax({
 			type: 'POST',
 			url: '/movies',
@@ -49,67 +72,20 @@ $(document).ready(function(){
 			sortParam = "ra";
 		}
 		const genreType = document.getElementById("view_option").value.replace(/ /g, "-");
-		console.log("jsfile" +genreType);
-		//console.log(sortMethod);
-		//console.log("sort param:" + sortParam);
 		$.ajax({
 			type: 'GET',
 			url: '/?sortMethod=' + sortParam + '&genreType=' + genreType,
 			success: function() {
-				var option;
-				/*
-				if(sortParam === "md")
-				{
-					option = "md";
-				}
-				else if(sortParam === "ma")
-				{
-					option = "ma";
-				}
-				else if(sortParam === "rd")
-				{
-					option = "rd";
-				}
-				else if(sortParam === "ra")
-				{
-					option = "ra";
-				}
-				*/
 				location.replace('/?sortMethod=' + sortParam + '&genreType=' + genreType);
-				
-				/*
-				var optionToSelect = window.document.getElementById(option);
-				console.log(optionToSelect.id);
-				optionToSelect.selected = "true";
-				console.log("set to true");
-				
-				var sortBy = window.document.getElementById("sort_option");
-				console.log(sortBy.id);
-				var temp = sortBy.selectedIndex;
-				console.log(temp);
-				*/
 			}
 		});
 	});
-
-
-	/*
-	$("#view_button").on('click', function(){
-		var viewOption = document.getElementById("view_option").value;
-		$.ajax({
-			type: 'GET',
-			url: '/view/' + viewOption,
-			success: function() {
-				location.replace('/view/' + viewOption);
-			}
-		});
-	});
-	*/
 
 	function ajaxPut(id) {
+		var genreArray = $('#genre').val().split(", ");
 		var formData = {
 			movie: $('#movie').val(),
-			genre: $('#genre').val(),
+			genre: genreArray,
 			rate: $('#rate').val(),
 			description: $('#description').val()
 		};

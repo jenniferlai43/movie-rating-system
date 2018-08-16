@@ -28,13 +28,6 @@ function makeList (movies) {
 	return genreList;
 };
 
-var gl;
-Rating.find().exec(function(err, movies){
-	gl = makeList(movies);
-	makeGlobal();
-	return;
-});
-
 function makeGlobal() //makes gl a global variable
 {
 }
@@ -43,6 +36,11 @@ module.exports = function(app) {
 
 	//index page
 	app.get('/', function(req, res) {
+		var gl;
+		Rating.find().exec(function(err, movies){
+			gl = makeList(movies);
+			console.log(gl);
+		});
 		var sortParameter = {movie: 'ascending'};
 		var genreFind = {};
 		var sortMethod;

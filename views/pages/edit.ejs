@@ -6,29 +6,31 @@
 	</head>
 	<body>
 		<% include ../partials/header %>
+		<div class = "content">
 		<% include ../partials/edit-sidebar %>
-		<div class = "movie-list">
-			<ul>
-					<div class = movie_item>
-						<ul id = "movie">
-							<li id = "title"><%=rating.movie %></li>
-							<div class = "details">
-								<li><b><u>Rate:</u></b> <%=rating.rate %></li>
-								<li><b><u>Genre:</u></b> 
-									<% for(var j=0; j<rating.genre.length; j++) { %>
-										<%=rating.genre[j]%>
-										<%if(j!=rating.genre.length-1){%>
-											,
-										<%}%>
-									<% } %></li> 
-								<li><b><u>Description:</u></b> <%=rating.description %></li>
-								<li><b><u>Created at:</u></b> <%=rating.created_at %></li>
-								<li><b><u>Updated at:</u></b> <%=rating.updated_at %></li>
-							</div>
-						</ul>
-						<br />
-					</div>
-			</ul>
+			<div class = "movie_container">
+				<ul>
+						<div class = movie_item>
+							<ul id = "movie">
+								<li id = "title"><%=rating.movie %></li>
+								<div class = "details">
+									<li><b><u>Rate:</u></b> <%=rating.rate %></li>
+									<li><b><u>Genre:</u></b> 
+										<% for(var j=0; j<rating.genre.length; j++) { %>
+											<%=rating.genre[j]%>
+											<%if(j!=rating.genre.length-1){%>
+												,
+											<%}%>
+										<% } %></li> 
+									<li><b><u>Description:</u></b> <%=rating.description %></li>
+									<li><b><u>Created at:</u></b> <%=rating.created_at %></li>
+									<li><b><u>Updated at:</u></b> <%=rating.updated_at %></li>
+								</div>
+							</ul>
+							<br />
+						</div>
+				</ul>
+			</div>
 		</div>
 		<script type="text/javascript">
 			document.getElementById('genre').value = 

@@ -6,36 +6,38 @@
 	</head>
 	<body>
 		<% include ../partials/header %>
+		<div class = "content">
 		<% include ../partials/main-sidebar %>
-		<div class = "movie-list">
-			<ul>
-				<% for(var i=0; i<list.length; i++){ %>
-					<div class = movie_item>
-						<ul id = "movie">
-							<li id = "title"><%=list[i].movie %></li>
-							<div class = "details">
-								<li><b><u>Rate:</u></b> <%=list[i].rate %></li>
-								<li><b><u>Genre:</u></b> 
-									<% for(var j=0; j<list[i].genre.length; j++) { %>
-										<%=list[i].genre[j]%>
-										<%if(j!=list[i].genre.length-1){%>
-											, 
-										<%}%>
-									<% } %>
-									</li>
-								<li><b><u>Description:</u></b> <%=list[i].description %></li>
-								<li><b><u>Created at:</u></b> <%=list[i].created_at %></li>
-								<li><b><u>Updated at:</u></b> <%=list[i].updated_at %></li>
+			<div class = "movie_container">
+				<ul>
+					<% for(var i=0; i<list.length; i++){ %>
+						<div class = "movie_item">
+							<ul id = "movie">
+								<li id = "title"><%=list[i].movie %></li>
+								<div class = "details">
+									<li><b><u>Rate:</u></b> <%=list[i].rate %></li>
+									<li><b><u>Genre:</u></b> 
+										<% for(var j=0; j<list[i].genre.length; j++) { %>
+											<%=list[i].genre[j]%>
+											<%if(j!=list[i].genre.length-1){%>
+												, 
+											<%}%>
+										<% } %>
+										</li>
+									<li><b><u>Description:</u></b> <%=list[i].description %></li>
+									<li><b><u>Created at:</u></b> <%=list[i].created_at %></li>
+									<li><b><u>Updated at:</u></b> <%=list[i].updated_at %></li>
+								</div>
+							</ul>
+							<div class = image_wrap>
+								<a href = "/edit/<%=list[i]._id %>"><img id = "edit_icon" src = "https://image.flaticon.com/icons/svg/61/61456.svg" /></a>
+								<a href = "/"><img id = "delete_icon" data-id = "<%=list[i]._id %>" src = "https://openclipart.org/image/2400px/svg_to_png/16155/milker-X-icon.png" / ></a>
 							</div>
-						</ul>
-						<div class = image_wrap>
-							<a href = "/edit/<%=list[i]._id %>"><img id = "edit_icon" src = "https://image.flaticon.com/icons/svg/61/61456.svg" /></a>
-							<img id = "delete_icon" data-id = "<%=list[i]._id %>" src = "https://openclipart.org/image/2400px/svg_to_png/16155/milker-X-icon.png" / >
+							<br />
 						</div>
-						<br />
-					</div>
-				<% } %>
-			</ul>
+					<% } %>
+				</ul>
+			</div>
 		</div>
 	</body>
 </html>

@@ -34,7 +34,7 @@ $(document).ready(function(){
 	}
 
 	function ajaxPost() {
-		var genreArray = $('#genre').val().split(", ");
+		var genreArray = $('#genre').val().split(/,/g);
 		var formData = {
 			movie: $('#movie').val(),
 			genre: genreArray,
@@ -82,7 +82,7 @@ $(document).ready(function(){
 	});
 
 	function ajaxPut(id) {
-		var genreArray = $('#genre').val().split(", ");
+		var genreArray = $('#genre').val().split(/,/g);
 		var formData = {
 			movie: $('#movie').val(),
 			genre: genreArray,

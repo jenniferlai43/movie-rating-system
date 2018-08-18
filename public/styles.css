@@ -1,3 +1,6 @@
+/*vw = viewport width*/
+/*vh = viewport height*/
+
 body {
     color: white;
     font-family:  "Trebuchet MS", Helvetica, sans-serif;
@@ -48,11 +51,11 @@ h1
     height: 100%;
     font-style: bold;
     position: fixed;
-    width: 30vh;
+    width: 220px;
 }
 
 .container-sidebar input {
-    width: 25vh;
+    width: 196px;
     padding: 10px 10px;
     margin: 5px 0px;
     -webkit-transition: 0.5s;
@@ -62,7 +65,7 @@ h1
 }
 
 .container-sidebar textarea {
-    width: 25vh;
+    width: 196px;
     padding: 10px 10px;
     margin: 5px 0px;
     -webkit-transition: 0.5s;
@@ -89,6 +92,7 @@ h1
 {
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 #filter_fields
@@ -105,7 +109,7 @@ h1
 }
 
 #add_movie {
-    width: 200px;
+    width: 220px;
 }
 
 #update_movie {
@@ -113,11 +117,6 @@ h1
 }
 
 .container-sidebar button:hover {
-    /*
-    background-color: #5B5B5B;
-    color: white;
-    text-align: center;
-    */
     background-color: #ddd6f3;
     color: #faaca8;
     border-color: #ddd6f3;
@@ -135,7 +134,7 @@ h1
     display: block;
     padding: 8px 16px;
     text-decoration: none;
-    width: 30vh;
+    width: 220px;
     text-align: center;
 }
 
@@ -146,6 +145,7 @@ h1
     -webkit-transition: 0.5s;
     transition: 0.5s;
     border: 2px white solid;
+    width: 220px;
 }
 
 .nav a {
@@ -162,7 +162,7 @@ h1
 
 .movie_container {
     position: absolute;
-    margin-left: 300px;
+    margin-left: 305px;
     top: 100px;
     bottom: 0px;
     left: 0px;
@@ -171,7 +171,7 @@ h1
 }
 
 .movie_container ul #movie{
-    width: 80vh;
+    width: 40vw;
     margin: 10px 0px;
     padding: 10px 20px;
     font-size: 12px;

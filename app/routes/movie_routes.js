@@ -25,11 +25,12 @@ function makeList (movies) {
 			}
 		}
 	}
-	return genreList;
+	return genreList.sort();
 };
 
-function makeGlobal() //makes gl a global variable
+function makeGlobal(gl) //makes gl a global variable
 {
+	console.log(gl);
 }
 
 module.exports = function(app) {
@@ -37,60 +38,61 @@ module.exports = function(app) {
 	//index page
 	app.get('/', function(req, res) {
 		var gl;
-		Rating.find().exec(function(err, movies){
+		Rating.find().sort({genre: 'descending'}).exec(function(err, movies){ //makes sure that genre list is made before other functions run
 			gl = makeList(movies);
-			console.log(gl);
-		});
-		var sortParameter = {movie: 'ascending'};
-		var genreFind = {};
-		var sortMethod;
-		var genreType;
-		if (typeof req.query.sortMethod == 'undefined' && typeof req.query.genreType == 'undefined')
-		{
-			console.log('-----------empty');
-		}
-		else
-		{
-			console.log('-----------not empty');
-			sortMethod = req.query.sortMethod;
-			genreType = req.query.genreType;
-			
-			if (genreType!="All-Genres")
+			makeGlobal();
+			var sortParameter = {movie: 'ascending'};
+			var genreFind = {};
+			var sortMethod;
+			var genreType;
+			if (typeof req.query.sortMethod == 'undefined' && typeof req.query.genreType == 'undefined')
 			{
-				genreFind = {genre: genreType.replace(/\-/g, " ")}
+				console.log('no query parameters');
 			}
-			var sortParameter;
-			if (sortMethod === "md") //sort by movie descending
+			else
 			{
-				sortParameter = {movie: 'descending'};
-			}
-			else if (sortMethod === "ma") //sort by movie name ascending
-			{
-				sortParameter = {movie: 'ascending'};
-			}
-			else if (sortMethod === "rd") //sort by rate descending
-			{
-				sortParameter = {rate: 'descending'};
-			}
-			else if (sortMethod === "ra") //sort by rate ascending
-			{
-				sortParameter = {rate: 'ascending'};
-			}
-		}
-		Rating.find(genreFind).sort(sortParameter).exec(function(err, movies) {
-			if (err) {
-				res.send({'error': 'An error has occurred'});
-			}
-			else {
-				//res.render will look in views folder
-				if (typeof req.query.sortMethod == 'undefined' && typeof req.query.genreType == 'undefined')
+				sortMethod = req.query.sortMethod;
+				genreType = req.query.genreType;
+				
+				if (genreType!="All-Genres")
 				{
-					sortMethod = '-1';
-					genreType = '-1';
+					genreFind = {genre: genreType.replace(/\-/g, " ")}
 				}
-				res.render('pages/index', {list: movies, genreList: gl, sortMethod: sortMethod, genreType: genreType});
+				var sortParameter;
+				if (sortMethod === "md") //sort by movie descending
+				{
+					sortParameter = {movie: 'descending'};
+				}
+				else if (sortMethod === "ma") //sort by movie name ascending
+				{
+					sortParameter = {movie: 'ascending'};
+				}
+				else if (sortMethod === "rd") //sort by rate descending
+				{
+					sortParameter = {rate: 'descending'};
+				}
+				else if (sortMethod === "ra") //sort by rate ascending
+				{
+					sortParameter = {rate: 'ascending'};
+				}
 			}
+			Rating.find(genreFind).sort(sortParameter).exec(function(err, movies) {
+				if (err) {
+					res.send({'error': 'An error has occurred'});
+				}
+				else {
+					//res.render will look in views folder
+					if (typeof req.query.sortMethod == 'undefined' && typeof req.query.genreType == 'undefined')
+					{
+						sortMethod = '-1';
+						genreType = '-1';
+					}
+					
+					res.render('pages/index', {list: movies, genreList: gl, sortMethod: sortMethod, genreType: genreType});
+				}
+			});
 		});
+		
 	});
 
 	app.delete('/movies/:id', function(req, res) {

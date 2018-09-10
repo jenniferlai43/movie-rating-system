@@ -1,7 +1,7 @@
 <!-- views/partials/sidebar.ejs -->
 <div class = "container-sidebar">
 	<div class = "nav">
-		<a href = "/"><li>Home</li></a>
+		<a href = "/"><li class = "butt">Home</li></a>
 		<div class = "collapse_form">
 			<!--<form action = '/movies' method = 'POST'>-->
 			<form id = "rating_input_edit" data-id = "<%=rating._id %>">
@@ -16,7 +16,7 @@
 				<input type="text" name="description" id = "description" placeholder="Description..." required />
 				-->
 				<textarea rows="3" name = "description" id = "description" required ><%=rating.description %></textarea>
-				<button type="submit" id = "update_movie">Update Movie</button>
+				<button class = "butt" type="submit" id = "update_movie">Update Movie</button>
 			</form>
 		</div>
 	</div>

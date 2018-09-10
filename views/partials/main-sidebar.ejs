@@ -1,28 +1,27 @@
 <!-- views/partials/sidebar.ejs -->
 <div class = "container-sidebar">
 	<div class = "nav">
-		<a href = "/"><li>Home</li></a>
+		<a href = "/"><li class = "butt">Home</li></a>
 		<!--<li id = "collapsible_trigger">Add Movie</li>-->
 		<div id = "filter_container">
 			<div id = "filter_fields">
 				<p>Sort By:</p>
-				<select id = "sort_option">
+				<select class = "custom-select" id = "sort_option">
 					<option id = "ma" value = "ma">Movie Name (asc.)</option>
 					<option id = "md" value = "md">Movie Name (des.)</option>
 					<option id = "rd" value = "rd">Rating (des.)</option>
 					<option id = "ra" value = "ra">Rating (asc.)</option>
 				</select>
 				<p>View by Genre:</p> 
-				<select id = "view_option">
+				<select class = "custom-select" id = "view_option">
 					<option>All Genres</option>
 					<% for(var i=0; i<genreList.length; i++) { %>
 						<option><%= genreList[i] %></option>
 					<% } %>
 				</select>
 			</div>
-			<button id = "filter_button" type = "button">Filter</button>
+			<button class = "butt" id = "filter_button" type = "button">Filter</button>
 		</div>
-		<br />
 		<div class = "collapse_form">
 			<!--<form action = '/movies' method = 'POST'>-->
 			<form id = "rating_input">
@@ -37,7 +36,7 @@
 				<input type="text" name="description" id = "description" placeholder="Description..." required />
 				-->
 				<textarea rows="3" name = "description" id = "description" placeholder= "Description" required ></textarea>
-				<button type="submit" id = "add_movie">Add Movie</button>
+				<button class = "butt" type="submit" id = "add_movie">Add Movie</button>
 			</form>
 		</div>
 	</div>

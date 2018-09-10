@@ -1,12 +1,16 @@
 /*vw = viewport width*/
 /*vh = viewport height*/
 
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-family: 'Karla', sans-serif;
+}
+
 body {
     color: white;
-    font-family:  "Trebuchet MS", Helvetica, sans-serif;
-    background: #ddd6f3;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #faaca8, #ddd6f3);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #faaca8, #ddd6f3); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: #faaca8;  /* fallback for old browsers */
 }
 
 ul {
@@ -16,15 +20,15 @@ ul {
 
 img
 {
+    margin: 20px 10px;
     max-height: 20px;
-    padding: 10px 10px;
     display: flex;
 }
 
 p
 {
     font-size: 14px;
-    margin: 8px 14px;
+    margin: 8px 0px;
 }
 
 h1
@@ -40,52 +44,32 @@ h1
     text-align: center;
     z-index: 1000;
     height: 100px;
+    background-image: linear-gradient(0deg, rgba(250, 172, 168, 0), rgba(250, 172, 168, 0.5) 20%, #faaca8 40%);
+}
 }
 
 .content {
-    padding-top: 105px;
+    padding-top: 100px;
 }
 
 .container-sidebar {
-    float: left;
     height: 100%;
-    font-style: bold;
     position: fixed;
-    width: 220px;
+    width: 270px;
+    z-index: 1000;
+    top: 12%;
 }
 
-.container-sidebar input {
-    width: 196px;
-    padding: 10px 10px;
+.container-sidebar input, textarea {
+    width: 100%;
+    color: black;
+    font-size: 11px;
+    padding: 8px 8px;
     margin: 5px 0px;
     -webkit-transition: 0.5s;
     transition: 0.5s;
     outline: none;
     overflow: visible;
-}
-
-.container-sidebar textarea {
-    width: 196px;
-    padding: 10px 10px;
-    margin: 5px 0px;
-    -webkit-transition: 0.5s;
-    transition: 0.5s;
-    outline: none;
-    overflow: visible;
-}
-
-.container-sidebar button {
-    border-radius: 60px;
-    margin: 5px 0px;
-    padding: 10px 0px;
-    -webkit-transition: 0.5s;
-    transition: 0.5s;
-    border: 2px white solid;
-    background-color: transparent;
-    color: white;
-    font-family:  "Trebuchet MS", Helvetica, sans-serif;
-    font-size: 12px;
-
 }
 
 #filter_container
@@ -93,6 +77,7 @@ h1
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 100%;
 }
 
 #filter_fields
@@ -100,11 +85,19 @@ h1
     float: left;
 }
 
+.custom-select
+{
+    color: #faaca8;
+    background: white;
+    width: 100%;
+    font-size: 11px;
+    height: 25px;
+}
 
 #filter_button {
-    width: 80px;
+    width: 100px;
     height: 40px;
-    margin: 40px 0px 5px 5px;
+    margin: 40px 0px 5px 20px;
     padding: 5px 10px;
 }
 
@@ -116,16 +109,11 @@ h1
     width: 200px;
 }
 
-.container-sidebar button:hover {
-    background-color: #ddd6f3;
-    color: #faaca8;
-    border-color: #ddd6f3;
-}
-
 .collapse_form
 {
     /*display: none;*/
     overflow: visible;
+    width: 100%;
 }
 
 .nav {
@@ -134,18 +122,24 @@ h1
     display: block;
     padding: 8px 16px;
     text-decoration: none;
-    width: 220px;
     text-align: center;
 }
 
-.nav li {
-    border-radius: 60px;
+.nav .butt {
+    border-radius: 0px;
     margin: 5px 0px;
-    padding: 10px 0px;
-    -webkit-transition: 0.5s;
-    transition: 0.5s;
+    padding: 8px 0px;
+    -webkit-transition: 1s;
+    transition: 1s;
     border: 2px white solid;
-    width: 220px;
+    width: 100%;
+    background-color: transparent;
+}
+
+.nav .butt:hover {
+    border-radius: 60px;
+    background-color: #ddd6f3;
+    border-color: #ddd6f3;
 }
 
 .nav a {
@@ -153,25 +147,18 @@ h1
     color: white;
 }
 
-/* Change the link color on hover */
-.nav li:hover {
-    background-color: #ddd6f3;
-    color: #faaca8;
-    border-color: #ddd6f3;
-}
 
 .movie_container {
     position: absolute;
     margin-left: 305px;
     top: 100px;
-    bottom: 0px;
     left: 0px;
     right: 0px;
     overflow: auto;
 }
 
 .movie_container ul #movie{
-    width: 40vw;
+    width: 50vw;
     margin: 10px 0px;
     padding: 10px 20px;
     font-size: 12px;
@@ -200,4 +187,9 @@ h1
 .movie_item {
     display: flex;
     align-items: center;
+}
+
+.image_wrap
+{
+    display: flex;
 }

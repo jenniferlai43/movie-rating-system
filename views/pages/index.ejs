@@ -13,8 +13,8 @@
 					<% for(var i=0; i<list.length; i++){ %>
 						<div class = "movie_item">
 							<ul id = "movie">
-								<li id = "title"><%=list[i].movie %></li>
-								<div class = "details">
+								<li data-target="#details<%=i %>" data-toggle="collapse" id = "title"><%=list[i].movie %></li>
+								<div id = "details<%=i %>" class = "collapse details">
 									<li><b><u>Rate:</u></b> <%=list[i].rate %></li>
 									<li><b><u>Genre:</u></b> 
 										<% for(var j=0; j<list[i].genre.length; j++) { %>
@@ -30,8 +30,8 @@
 								</div>
 							</ul>
 							<div class = image_wrap>
-								<a href = "/edit/<%=list[i]._id %>"><img id = "edit_icon" src = "https://image.flaticon.com/icons/svg/61/61456.svg" /></a>
-								<a href = "/"><img id = "delete_icon" data-id = "<%=list[i]._id %>" src = "https://openclipart.org/image/2400px/svg_to_png/16155/milker-X-icon.png" / ></a>
+								<a href = "/edit/<%=list[i]._id %>"><img class = "img_responsive" id = "edit_icon" src = "https://image.flaticon.com/icons/svg/61/61456.svg" /></a>
+								<a href = "/"><img class = "img_responsive" id = "delete_icon" data-id = "<%=list[i]._id %>" src = "https://openclipart.org/image/2400px/svg_to_png/16155/milker-X-icon.png" / ></a>
 							</div>
 							<br />
 						</div>

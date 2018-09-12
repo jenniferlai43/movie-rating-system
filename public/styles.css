@@ -134,6 +134,7 @@ h1
     border: 2px white solid;
     width: 100%;
     background-color: transparent;
+    outline: none;
 }
 
 .nav .butt:hover {
